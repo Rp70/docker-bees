@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  beesd:
+    container_name: beesd
+    privileged: true
+    restart: unless-stopped
+    hostname: beesd
+    image: rp70/bees
+    build:
+      context: .
+    environment:
+      - HASH_TABLE=/mnt/.beeshome/beeshash.dat
+      - HASH_TABLE_SIZE=4G
+      - OPTIONS=-a -c 1
+    volumes:
+      - /root/BTRFS/mounted/volume:/mnt
